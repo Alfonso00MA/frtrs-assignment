@@ -23,8 +23,14 @@ docker-compose up
 # http://127.0.0.1:82/trends_weather?phrase=bitcoin
 
 # To run the tests:
-# Create a virtual env from requirements.txt. Then activate it
+# Create a virtual env
 python3 -m venv /your_preferred_path/frtrs-assignment
+
+# Then activate it
 source /your_preferred_path/frtrs-assignment/bin/activate
+
+# Install packages from requirements.txt.
+pip install -r frtrs-assignment/requirements.txt
+
 # Execute the following pytest command:
 pytest frtrs-assignment/app/*.py
