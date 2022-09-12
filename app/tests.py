@@ -29,12 +29,15 @@ def test_trends():
     assert(10 < len(response.json()["interest"]) <= 11) # TODO confirm that this works fine on both: weekdays and weekends
     
     response = client.get("/trends?phrase=Rusia&start_date=2010-01-01&end_date=2010-02-02")
+    interests = response.json()['interest']
     assert(response.status_code == 200)
-    assert(response.json() == {"interest":[66,54,74,68,67,70,80,77,91,77,88,81,82,80,88,82,75,90,94,91,96,72,95,82,88,98,83,100,87,83,83,85,86]})
+    assert(interests.index(max(interests)) == 27)
+    assert(interests.index(min(interests)) == 1)
     
     response = client.get("/trends?phrase=Rusia&start_date=2010-02-02&end_date=2010-01-01")
     assert(response.status_code == 400)
     assert(response.json() == {"detail":"Start date later than end date"})
+
 
 def test_weather():
     response = client.get("/weather")
